@@ -6,7 +6,7 @@
 
 
 int main() {
-    //Initialization
+    //Initialization of object data
     Engineer e("Adam Howard", 25, 35.32, 170.4, 543003002);
 
     e.setJobTitle("Software Engineer");
@@ -44,8 +44,6 @@ int main() {
     engineerHeap->addSubjectGrade("Maths", 75);
     engineerHeap->printSubjectGrades();
 
-
-
     //Enter menu loop
     while(true){
         std::cout << "Enter the option: \n";
@@ -59,12 +57,15 @@ int main() {
         std::cout << "8: Print height: \n";
         std::cout << "9: Set seconds alive: \n";
         std::cout << "10: Print seconds alive: \n";
-
+        std::cout << "11: Add Qualifications: \n";
+        std::cout << "12: Print Qualifications: \n";
+        std::cout << "13: Add Subject Grades: \n";
+        std::cout << "14: Print Subject Grades: \n";
 
         int choice = 0;
         std::cin >> choice;
 
-        switch(choice){
+        switch(choice) {
             case 1: {
                 std::cin.ignore();
                 std::cout << "Enter name: ";
@@ -96,8 +97,8 @@ int main() {
                 break;
             }
             case 6: {
-               std::cout << e.getBalance() << " euro\n";
-               break;
+                std::cout << e.getBalance() << " euro\n";
+                break;
             }
             case 7: {
                 std::cout << "Enter height: ";
@@ -121,9 +122,34 @@ int main() {
                 std::cout << e.getSecondsAlive() << "seconds alive\n";
                 break;
             }
+            case 11: {
+                std::cout << "Add qualifications\n";
+                std::string input;
+                while (true) {
+                    std::cout << "Enter the qualification to add: (type exit to stop)\n";
+                    std::getline(std::cin, input);
+                    if (input != "exit") {
+                        e.addQualification(input);
+                    } else {
+                        break;
+                    }
+                };
+                break;
+            }
+            case 12: {
+                e.printQualifications();
+                break;
+            }
+            case 13: {
+                e.printQualifications();
+                break;
+            }
+            case 14: {
+                e.printSubjectGrades();
+                break;
+            }
         }
     }
-
 
     return 0;
 }
