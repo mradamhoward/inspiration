@@ -1,7 +1,12 @@
 #include <iostream>
+#include <memory>
 #include "engineer.h"
 
+#define GRADE 90
+
+
 int main() {
+    //Initialization
     Engineer e("Adam Howard", 25, 35.32, 170.4, 543003002);
 
     e.setJobTitle("Software Engineer");
@@ -20,12 +25,28 @@ int main() {
 
     e.printQualifications();
 
-    e.addSubjectGrade("Problem Solving & Programming", 90);
+    e.addSubjectGrade("Problem Solving & Programming", GRADE);
     e.addSubjectGrade("Databases", 70);
     e.addSubjectGrade("Distributed Systems Programming", 67);
 
     e.printSubjectGrades();
 
+    //Allocate engineer object on heap and perform basic computation
+    std::unique_ptr<Engineer> engineerHeap(new Engineer("Mike Dynamic", 37, 322, 3232, 1000000000));
+    engineerHeap->printName();
+    engineerHeap->printDetails();
+    engineerHeap->setJobTitle("C++ Engineer");
+    engineerHeap->addQualification("LC");
+    engineerHeap->addQualification("BSc");
+    engineerHeap->addQualification("MSc");
+    engineerHeap->addQualification("PhD");
+    engineerHeap->printQualifications();
+    engineerHeap->addSubjectGrade("Maths", 75);
+    engineerHeap->printSubjectGrades();
+
+
+
+    //Enter menu loop
     while(true){
         std::cout << "Enter the option: \n";
         std::cout << "1: Set name: \n";
