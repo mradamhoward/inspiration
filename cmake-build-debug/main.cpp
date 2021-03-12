@@ -2,6 +2,7 @@
 #include <memory>
 #include<thread>
 #include <future>
+#include <climits>
 #include "engineer.h"
 
 #define GRADE 90
@@ -9,6 +10,12 @@
 
 int main() {
     std::cout << "Author: " << AUTHOR << std::endl;
+
+    short shrt = 10;
+    char gender = 'm';
+    wchar_t g = 'f;';
+    uint64_t ui = 432434;
+    uint8_t eight_t = 21;
 
     //Initialization of object data
     Engineer e("Adam Howard", 25, 35.32, 170.4, 543003002);
@@ -92,6 +99,25 @@ int main() {
     int* counterIntHeap = reinterpret_cast<int*>(counterHeap);
     *counterIntHeap = 10;
     std::cout << "counterIntHeap should be 10: " << *counterIntHeap << std::endl;
+
+    unsigned long long int hugeNumber = ULLONG_MAX;
+
+    std::cout << "Max unsigned long long supported: " << hugeNumber << std::endl;
+
+
+    int whileCounter = 0;
+    do{
+        whileCounter++;
+        if(whileCounter == 11){
+            break;
+        } else {
+            continue;
+        }
+    } while (whileCounter < 10);
+
+
+
+
 
     //Enter menu loop
     while(true){
