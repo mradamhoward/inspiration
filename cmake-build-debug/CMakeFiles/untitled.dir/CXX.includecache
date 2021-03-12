@@ -6,19 +6,23 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/Adam/CLionProjects/untitled/cmake-build-debug/engineer.h
+/home/adam/code/inspiration/cmake-build-debug/engineer.h
 person.h
-C:/Users/Adam/CLionProjects/untitled/cmake-build-debug/person.h
+/home/adam/code/inspiration/cmake-build-debug/person.h
 
-C:/Users/Adam/CLionProjects/untitled/cmake-build-debug/main.cpp
+/home/adam/code/inspiration/cmake-build-debug/main.cpp
 iostream
 -
 memory
 -
+thread
+-
+future
+-
 engineer.h
-C:/Users/Adam/CLionProjects/untitled/cmake-build-debug/engineer.h
+/home/adam/code/inspiration/cmake-build-debug/engineer.h
 
-C:/Users/Adam/CLionProjects/untitled/cmake-build-debug/person.h
+/home/adam/code/inspiration/cmake-build-debug/person.h
 iostream
 -
 vector

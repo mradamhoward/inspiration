@@ -1,11 +1,15 @@
 #include <iostream>
 #include <memory>
+#include<thread>
+#include <future>
 #include "engineer.h"
 
 #define GRADE 90
-
+#define AUTHOR "ADAM_HOWARD"
 
 int main() {
+    std::cout << "Author: " << AUTHOR << std::endl;
+
     //Initialization of object data
     Engineer e("Adam Howard", 25, 35.32, 170.4, 543003002);
 
@@ -43,6 +47,51 @@ int main() {
     engineerHeap->printQualifications();
     engineerHeap->addSubjectGrade("Maths", 75);
     engineerHeap->printSubjectGrades();
+
+    std::promise<int> p;
+    std::future<int> f3 = p.get_future();
+
+    auto parallelExec = [&p](){
+        Engineer eThread("James Thread", 45, 543.33, 6437.32, 2343248211);
+        eThread.setJobTitle("Robotics Engineer");
+        p.set_value_at_thread_exit(eThread.getAge());
+    };
+
+    std::thread paraExecThread(parallelExec);
+
+    try {
+        std::cout << "Value from thread execution: " << f3.get() << "\n";
+    } catch(const std::exception& e) {
+        std::cout << "Exception from the thread: " << e.what() << '\n';
+    }
+
+    paraExecThread.join();
+
+    //static_cast example
+    int counter = 4;
+    float counterFloat = static_cast<float>(counter);
+
+    std::cout << "Should be float after static_cast: " << typeid(counterFloat).name() << std::endl;
+
+    //const_cast example
+    const int fixedInt = 9;
+    const int& fixedIntRef = fixedInt;
+    int& varInt = const_cast<int&>(fixedIntRef);
+
+    varInt = 5;
+    std::cout << "Edit the constant value after cast: " << varInt << std::endl;
+
+    //dynamic_cast example
+    Person* downCast = dynamic_cast<Person*>(engineerHeap.get());
+    downCast->printDetails();
+
+    //reinterpret_cast example
+    unsigned* counterHeap = new unsigned();
+    *counterHeap = 6;
+
+    int* counterIntHeap = reinterpret_cast<int*>(counterHeap);
+    *counterIntHeap = 10;
+    std::cout << "counterIntHeap should be 10: " << *counterIntHeap << std::endl;
 
     //Enter menu loop
     while(true){
