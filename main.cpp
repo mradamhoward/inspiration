@@ -115,10 +115,6 @@ int main() {
         }
     } while (whileCounter < 10);
 
-
-
-
-
     //Enter menu loop
     while(true){
         std::cout << "Enter the option: \n";
