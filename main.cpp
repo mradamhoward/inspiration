@@ -1,48 +1,32 @@
 #include <iostream>
 #include <memory>
-#include<thread>
-#include <future>
-#include <climits>
+#include <regex>
 #include "engineer.h"
+#include "regex_practice.h"
 
 #define GRADE 90
-#define AUTHOR "ADAM_HOWARD"
+
 
 int main() {
-    std::cout << "Author: " << AUTHOR << std::endl;
-
-    short shrt = 10;
-    char gender = 'm';
-    wchar_t g = 'f;';
-    uint64_t ui = 432434;
-    uint8_t eight_t = 21;
-
     //Initialization of object data
     Engineer e("Adam Howard", 25, 35.32, 170.4, 543003002);
-
     e.setJobTitle("Software Engineer");
     e.printJobTitle();
-
     e.setYearsExperience(10);
     std::cout << e.getYearsExperience() << "\n";
-
-    std::cout << "Area: " << e.calculateArea(2,3) << "\n";
-
     e.printDetails();
-
     e.addQualification("JC");
     e.addQualification("LC");
     e.addQualification("BSC");
-
     e.printQualifications();
-
     e.addSubjectGrade("Problem Solving & Programming", GRADE);
     e.addSubjectGrade("Databases", 70);
     e.addSubjectGrade("Distributed Systems Programming", 67);
-
     e.printSubjectGrades();
 
-    //Allocate engineer object on heap and perform basic computation
+    std::cout << "Area: " << e.calculateArea(2,3) << "\n";
+
+    //Allocate engineer object on heap and perform basic computation, using a smart pointer
     std::unique_ptr<Engineer> engineerHeap(new Engineer("Mike Dynamic", 37, 322, 3232, 1000000000));
     engineerHeap->printName();
     engineerHeap->printDetails();
@@ -55,65 +39,16 @@ int main() {
     engineerHeap->addSubjectGrade("Maths", 75);
     engineerHeap->printSubjectGrades();
 
-    std::promise<int> p;
-    std::future<int> f3 = p.get_future();
+    //Basic regex example
+    RegexPractice rp;
+    rp.PrintMatches();
+    rp.PrintMatches2();
+    rp.PrintMatches3();
+    rp.PrintMatches4();
+    rp.PrintMatches5();
+    rp.owlReplace();
+    rp.USOrgs();
 
-    auto parallelExec = [&p](){
-        Engineer eThread("James Thread", 45, 543.33, 6437.32, 2343248211);
-        eThread.setJobTitle("Robotics Engineer");
-        p.set_value_at_thread_exit(eThread.getAge());
-    };
-
-    std::thread paraExecThread(parallelExec);
-
-    try {
-        std::cout << "Value from thread execution: " << f3.get() << "\n";
-    } catch(const std::exception& e) {
-        std::cout << "Exception from the thread: " << e.what() << '\n';
-    }
-
-    paraExecThread.join();
-
-    //static_cast example
-    int counter = 4;
-    float counterFloat = static_cast<float>(counter);
-
-    std::cout << "Should be float after static_cast: " << typeid(counterFloat).name() << std::endl;
-
-    //const_cast example
-    const int fixedInt = 9;
-    const int& fixedIntRef = fixedInt;
-    int& varInt = const_cast<int&>(fixedIntRef);
-
-    varInt = 5;
-    std::cout << "Edit the constant value after cast: " << varInt << std::endl;
-
-    //dynamic_cast example
-    Person* downCast = dynamic_cast<Person*>(engineerHeap.get());
-    downCast->printDetails();
-
-    //reinterpret_cast example
-    unsigned* counterHeap = new unsigned();
-    *counterHeap = 6;
-
-    int* counterIntHeap = reinterpret_cast<int*>(counterHeap);
-    *counterIntHeap = 10;
-    std::cout << "counterIntHeap should be 10: " << *counterIntHeap << std::endl;
-
-    unsigned long long int hugeNumber = ULLONG_MAX;
-
-    std::cout << "Max unsigned long long supported: " << hugeNumber << std::endl;
-
-
-    int whileCounter = 0;
-    do{
-        whileCounter++;
-        if(whileCounter == 11){
-            break;
-        } else {
-            continue;
-        }
-    } while (whileCounter < 10);
 
     //Enter menu loop
     while(true){
@@ -221,6 +156,10 @@ int main() {
             }
         }
     }
+
+
+
+
 
     return 0;
 }

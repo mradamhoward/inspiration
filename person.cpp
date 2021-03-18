@@ -81,7 +81,7 @@ std::vector<std::string> Person::getQualifications(){
 void Person::printQualifications() const {
     std::cout << name << " Qualifications: \n";
 
-    for(std::string q : qualifications){
+    for(auto q : qualifications){
         std::cout << q << "\n";
     }
 
