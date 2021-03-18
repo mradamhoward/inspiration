@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Adam/CLionProjects/untitled/engineer.h
+person.h
+C:/Users/Adam/CLionProjects/untitled/person.h
+
+C:/Users/Adam/CLionProjects/untitled/main.cpp
+iostream
+-
+memory
+-
+regex
+-
+engineer.h
+C:/Users/Adam/CLionProjects/untitled/engineer.h
+regex_practice.h
+C:/Users/Adam/CLionProjects/untitled/regex_practice.h
+
+C:/Users/Adam/CLionProjects/untitled/person.h
+iostream
+-
+vector
+-
+map
+-
+
+C:/Users/Adam/CLionProjects/untitled/regex_practice.h
+regex
+-
+iostream
+-
+
